@@ -1,36 +1,95 @@
 package com.poo.EscolaSenai;
 
-//import java.util.ArrayList;
-//import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Aluno extends Pessoa{ //Classe base dos alunos da instituição
 
 // •--==> ATRITUBTOS
-
+// static List<Aluno> listaDeAlunos = new ArrayList<Aluno>();
+//static List<Aluno> listaDeAlunos;
+public static List<Aluno> listaDeAlunos = new ArrayList<Aluno>();
 private int alunoId=0;
 private String alunoMatricula; //Primary Key
 //private LocalDate alunoDataAdmissao; //localdate
-private String alunoStatus; //ENUM --> ativo, trancado, suspenso, concluído
-//private Endereco endereco; //enum no endereço
+//private EnumStatusMatricula alunoStatus; //ENUM --> ativo, trancado, suspenso, concluído
+private Endereco endereco; //enum no endereço
+
 
 // •--==> CONSTRUTOR
-public Aluno(String nomeAl){        
+//Construtor Base
+public Aluno(String nomeAl){
     this.setId(alunoId);
     this.alunoMatricula=("A-"+this.getId());
     //this.alunoDataAdmissao="Setembro"; //localdate
-    this.alunoStatus="Ativo";
+   // this.alunoStatus = EnumStatusMatricula.ATIVO;
     this.setNome(nomeAl);
     //this.setDataNascimento(LocalDate.now()); //localdate tem calculo de idade
     this.setEmail("SenaiEscola."+nomeAl+"."+this.getAlunoMatricula()+".alunos@senai.com");
     this.setSenha(this.alunoMatricula);
-    //listaDeAlunos.add(this.alunoLista);
+    //listaDeAlunos = new ArrayList<>();
 
-    //listaDeAlunos.add(arrayAluno);
-    
+
 }
+//Construtor Add Endereço
+public void alunoEndereco(Endereco endereco){
+    this.endereco = endereco;
+}
+//Construtor Add na Lista de Alunos
+/*public void listaGeralDeAlunos(Aluno alunoAddLista){ // A LISTA CONTINUA VAZIA
+    
+    for (Aluno alunoLogin : listaDeAlunos) {
+        alunoLogin = alunoAddLista;
+        if (listaDeAlunos.isEmpty()){            
+        listaDeAlunos = new ArrayList<>();
+        listaDeAlunos.add(alunoAddLista);
+        }
+    }
+}*/
 
 // •--==> METODOS
 //rodar um for para buscar o login senha e retornar true false
+/*public static void checagemLogin(){
+    Scanner leiaLogin = new Scanner(System.in);
+    Scanner leiaSenha = new Scanner(System.in);
+    String loginDigitado;
+    String senhaDigitada;
+    System.out.println(" •---===ESCOLA SENAI===---•");
+    System.out.println("Ambiente Virtual - Alunos(as)");
+
+    System.out.println("Digite seu email institucional:");
+    loginDigitado=leiaLogin.nextLine();
+    System.out.println("Digite sua senha:");
+    senhaDigitada=leiaSenha.nextLine();   
+    for (Aluno alunoLogin : listaDeAlunos) {
+        if (loginDigitado.equals(alunoLogin.getEmail()) && senhaDigitada.equals(alunoLogin.getSenha())) {
+            System.out.println("Login bem sucedido, você está acessando o Ambiente Virtual de Alunos");
+            //ambienteVirtual();?
+        }
+        else {
+            System.out.println("Login ou Senha inválidos");
+            //_Application.main(null);
+        }
+
+    }
+}
+//Lista de Alunos
+public static void imprimeListaDeAlunos(){
+    if(listaDeAlunos.isEmpty()){
+        System.out.println("Nenhum aluno(a) cadastrado(a) no sistema");
+    }
+    else{
+        for (Aluno aluno : listaDeAlunos) {
+            System.out.println("Aluno: "+aluno.getNome()+"");
+            System.out.println("Matrícula: "+aluno.getAlunoMatricula()+"");
+            System.out.println("Status: "+aluno.getAlunoStatus()+"");
+            System.out.println("Email Institucional: "+aluno.getEmail()+"");
+            System.out.println("Senha Institucional: "+aluno.getEmail()+"");
+        }
+    }
+}
+*/
 //conversão date
 @Override
 public void imprimePessoa(){ //Metodo da Superclasse Pessoa ele liga o extends Pessoa no aluno
@@ -47,35 +106,70 @@ public void imprimePessoa(){ //Metodo da Superclasse Pessoa ele liga o extends P
     //Dados de Aluno
     System.out.println("Matricula: "+getAlunoMatricula());
     //System.out.println("Data da Admissao: "+getAlunoDataAdmissao());
-    System.out.println("Situação: "+getAlunoStatus());
+    //System.out.println("Situação: "+getAlunoStatus());
     System.out.println("•====================•");
     
 }
 
+// Metodo para ser chamado no application para cadastrar aluno
+
+public static void cadastrarAluno(){
+
+    System.out.println("- CADASTRANDO NOVO ALUNO -");
+    System.out.print("Nome: ");
+    Scanner sc = new Scanner(System.in);
+    String nome = sc.nextLine();
+    Aluno aluno = new Aluno(nome);
+   // aluno.setNome(nome);
+    Aluno.listaDeAlunos.add(aluno);
+    System.out.println("\n");
+}
+
+// Novo metodo imprimir aluno
+public static void imprimeListaDeAluno(){
+    // Se a lista está vazia
+    if(!Aluno.listaDeAlunos.isEmpty()){
+        System.out.println("Lista de alunos:");
+        for(int i=0; i<Aluno.listaDeAlunos.size(); i++) {
+            System.out.println( (i+1) + "- " + Aluno.listaDeAlunos.get(i).getNome());
+        }
+    } else {
+        System.out.println("Não há aluno cadastrados.\n\n");
+    }
+}
+
 // •--==> GETTERs SETTERs
-
-
+public static List<Aluno> getListaDeAlunos() {
+    return listaDeAlunos;
+}
+public static void setListaDeAlunos(List<Aluno> listaDeAlunos) {
+    Aluno.listaDeAlunos = listaDeAlunos;
+}
 
 public String getAlunoMatricula() {
     return alunoMatricula;
 }
 
-/*
-public String getAlunoDataAdmissao() {
-    return alunoDataAdmissao;
+public Endereco getEndereco() {
+    return endereco;
 }
 
+public void setEndereco(Endereco endereco) {
+    this.endereco = endereco;
+}
+
+/*public String getAlunoDataAdmissao() {
+    return alunoDataAdmissao;
+    }
+    
 public void setAlunoDataAdmissao(String alunoDataAdmissao) {
     this.alunoDataAdmissao = alunoDataAdmissao;
-}
-*/
-public String getAlunoStatus() {
-    return alunoStatus;
-}
+}*/
 
-public void setAlunoStatus(String alunoStatus) {
-    this.alunoStatus = alunoStatus;
-}
+//public EnumStatusMatricula getAlunoStatus() {
+   // return alunoStatus;
 
 
+//public void setAlunoStatus(EnumStatusMatricula alunoStatus) {
+   // this.alunoStatus = alunoStatus;
 }
