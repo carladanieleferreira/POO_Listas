@@ -1,6 +1,7 @@
 package com.poo.EscolaSenai;
 
-public enum UnidadeFederal {
+public enum EnumUnidadeFederal {
+
     //Sudeste
     RJ("Rio de Janeiro"), SP("São Paulo"), 
     MG("Minas Gerais"), ES("Espirito Santo"),
@@ -26,7 +27,7 @@ public enum UnidadeFederal {
     private final String nomePorExtenso;
 
     //construtor
-    UnidadeFederal(String nomePorExtensoDigitado){
+    EnumUnidadeFederal(String nomePorExtensoDigitado){
         this.nomePorExtenso = nomePorExtensoDigitado;
     }
 

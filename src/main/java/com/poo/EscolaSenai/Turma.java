@@ -2,8 +2,8 @@ package com.poo.EscolaSenai;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Turma {
-    
+public class Turma {//
+
     private int id;
     private String numero;
     private List<Aluno> listaDeAlunos; //listaDeAlunos.add ou remove
@@ -71,4 +71,5 @@ public class Turma {
     public void setListaDeProf(List<Professor> listaDeProf) {
         this.listaDeProf = listaDeProf;
     }
+
 }
