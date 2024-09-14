@@ -7,15 +7,14 @@ public enum EnumEstadoCivil {
     SEPARADO("Separado(a)"),
     DIVORCIADO("Diovorciado(a)"),
     VIUVO("Viuvo(a)");
-    
+
     private final String estadoCivil;
 
-    EnumEstadoCivil(String escolhaEstCivil){
+    EnumEstadoCivil(String escolhaEstCivil) {
         this.estadoCivil = escolhaEstCivil;
     }
-    
-    
-    //GETTER
+
+    // GETTER
     public String getEnumEstadoCivil() {
         return estadoCivil;
     }
